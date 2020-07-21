@@ -29,14 +29,16 @@ module Formulae
     redexact = 0
     redcontain = 0
     while j < 5
-      if cChoice[j] == "RED" 
+      if playerChoice[j] == cChoice [j] && cChoice[j] == "RED" 
         redexact += 1
         j += 1
       else 
         j += 1
       end
     end
-    if cChoice.count("RED") > 0
+    if cChoice.count("RED") > 0 && playerChoice.include?("RED")
+      cChoice.count("RED") > playerChoice.count("RED") ? 
+      redcontain = playerChoice.count("RED") - redexact :
       redcontain = cChoice.count("RED") - redexact
     end
     @exact += redexact
@@ -48,14 +50,16 @@ module Formulae
     yellowexact = 0
     yellowcontain = 0
     while j < 5
-      if cChoice[j] == "YELLOW" 
+      if playerChoice[j] == cChoice [j] && cChoice[j] == "YELLOW" 
         yellowexact += 1
         j += 1
       else 
         j += 1
       end
     end
-    if cChoice.count("YELLOW") > 0
+    if cChoice.count("YELLOW") > 0 && playerChoice.include?("YELLOW")
+      cChoice.count("YELLOW") > playerChoice.count("YELLOW") ? 
+      yellowcontain = playerChoice.count("YELLOW") - yellowexact :
       yellowcontain = cChoice.count("YELLOW") - yellowexact
     end
     @exact += yellowexact
@@ -67,14 +71,16 @@ module Formulae
     greenexact = 0
     greencontain = 0
     while j < 5
-      if cChoice[j] == "GREEN" 
+      if playerChoice[j] == cChoice [j] && cChoice[j] == "GREEN" 
         greenexact += 1
         j += 1
       else 
         j += 1
       end
     end
-    if cChoice.count("GREEN") > 0
+    if cChoice.count("GREEN") > 0 && playerChoice.include?("GREEN")
+      cChoice.count("GREEN") > playerChoice.count("GREEN") ? 
+      greencontain = playerChoice.count("GREEN") - greenexact :
       greencontain = cChoice.count("GREEN") - greenexact
     end
     @exact += greenexact
@@ -84,15 +90,18 @@ module Formulae
   def checkBlue(playerChoice, cChoice)
     j = 0
     blueexact = 0
+    bluecontain = 0
     while j < 5
-      if cChoice[j] == "BLUE" 
+      if playerChoice[j] == cChoice [j] && cChoice[j] == "BLUE" 
         blueexact += 1
         j += 1
       else 
         j += 1
       end
     end
-    if cChoice.count("BLUE") > 0
+    if cChoice.count("BLUE") > 0 && playerChoice.include?("BLUE")
+      cChoice.count("BLUE") > playerChoice.count("BLUE") ? 
+      bluecontain = playerChoice.count("BLUE") - blueexact :
       bluecontain = cChoice.count("BLUE") - blueexact
     end
     @exact += blueexact
@@ -102,15 +111,18 @@ module Formulae
   def checkPurple(playerChoice, cChoice)
     j = 0
     purpleexact = 0
+    purplecontain = 0
     while j < 5
-      if cChoice[j] == "PURPLE" 
+      if playerChoice[j] == cChoice [j] && cChoice[j] == "PURPLE" 
         purpleexact += 1
         j += 1
       else 
         j += 1
       end
     end
-    if cChoice.count("PURPLE") > 0
+    if cChoice.count("PURPLE") > 0 && playerChoice.include?("PURPLE")
+      cChoice.count("PURPLE") > playerChoice.count("PURPLE") ? 
+      purplecontain = playerChoice.count("PURPLE") - purpleexact :
       purplecontain = cChoice.count("PURPLE") - purpleexact
     end
     @exact += purpleexact
