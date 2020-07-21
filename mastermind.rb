@@ -37,8 +37,8 @@ module Formulae
       if playerChoice[j] == cChoice[j]
         exact += 1
         j+=1
-      elsif cChoice.count playerChoice[j] > 0
-        contains = cChoice.count playerChoice[j]
+      elsif cChoice.count(playerChoice[j]) > 0
+        contains = cChoice.count(playerChoice[j])
         j+=1
       else j+=1
       end
@@ -92,7 +92,7 @@ class MasterMind
       winCondition
     else
       @@round += 1
-      @@attempt = 0
+      @@attempt = []
       playerguess
     end
   end
