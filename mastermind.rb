@@ -24,27 +24,109 @@ module Formulae
     puts @@cChoices
   end
 
-  def verifyContains(try, cChoices)
-    counts = Hash.new(0)
-    cChoices.each { |t| counts[t] += 1}
+  def checkRed(playerChoice, cChoice)
+    j = 0
+    redexact = 0
+    redcontain = 0
+    while j < 5
+      if cChoice[j] == "RED" 
+        redexact += 1
+        j += 1
+      else 
+        j += 1
+      end
+    end
+    if cChoice.count("RED") > 0
+      redcontain = cChoice.count("RED") - redexact
+    end
+    @exact += redexact
+    @contains += redcontain
+  end
+
+  def checkYellow(playerChoice, cChoice)
+    j = 0
+    yellowexact = 0
+    yellowcontain = 0
+    while j < 5
+      if cChoice[j] == "YELLOW" 
+        yellowexact += 1
+        j += 1
+      else 
+        j += 1
+      end
+    end
+    if cChoice.count("YELLOW") > 0
+      yellowcontain = cChoice.count("YELLOW") - yellowexact
+    end
+    @exact += yellowexact
+    @contains += yellowcontain
+  end
+
+  def checkGreen(playerChoice, cChoice)
+    j = 0
+    greenexact = 0
+    greencontain = 0
+    while j < 5
+      if cChoice[j] == "GREEN" 
+        greenexact += 1
+        j += 1
+      else 
+        j += 1
+      end
+    end
+    if cChoice.count("GREEN") > 0
+      greencontain = cChoice.count("GREEN") - greenexact
+    end
+    @exact += greenexact
+    @contains += greencontain
+  end
+
+  def checkBlue(playerChoice, cChoice)
+    j = 0
+    blueexact = 0
+    while j < 5
+      if cChoice[j] == "BLUE" 
+        blueexact += 1
+        j += 1
+      else 
+        j += 1
+      end
+    end
+    if cChoice.count("BLUE") > 0
+      bluecontain = cChoice.count("BLUE") - blueexact
+    end
+    @exact += blueexact
+    @contains += bluecontain
+  end
+
+  def checkPurple(playerChoice, cChoice)
+    j = 0
+    purpleexact = 0
+    while j < 5
+      if cChoice[j] == "PURPLE" 
+        purpleexact += 1
+        j += 1
+      else 
+        j += 1
+      end
+    end
+    if cChoice.count("PURPLE") > 0
+      purplecontain = cChoice.count("PURPLE") - purpleexact
+    end
+    @exact += purpleexact
+    @contains += purplecontain
   end
 
   def verify(playerChoice, cChoice)
-    j = 0
-    exact = 0
-    contains = 0
-    while j < 5
-      if playerChoice[j] == cChoice[j]
-        exact += 1
-        j+=1
-      elsif cChoice.count(playerChoice[j]) > 0
-        contains = cChoice.count(playerChoice[j])
-        j+=1
-      else j+=1
-      end
-    end
-    puts "Exactly correct: #{exact}"
-    puts "Correct, but in wrong location: #{contains}"
+    @exact = 0
+    @contains = 0
+    checkRed(playerChoice, cChoice)
+    checkYellow(playerChoice, cChoice)
+    checkGreen(playerChoice, cChoice)
+    checkBlue(playerChoice, cChoice)
+    checkPurple(playerChoice, cChoice)
+    puts "Exactly correct: #{@exact}"
+    puts "Correct, but in wrong location: #{@contains}"
   end
 
 end
