@@ -21,7 +21,6 @@ module Formulae
       @@cChoices.push(rng)
       i+=1
     end
-    puts @@cChoices
   end
 
   def checkRed(playerChoice, cChoice)
@@ -159,11 +158,14 @@ class MasterMind
   end
 
   def intro
-    puts "Welcome to mastermind!\nPlease input a guess."
+    puts "Welcome to mastermind!
+You have 12 chances to guess the correct sequence.
+Please input a guess."
   end
 
   def playerguess
-    puts "select 5 colors.1=r,2=y,3=g,4=b,5=p"
+    puts "Round: #{@@round}/12"
+    puts "Select a color 5 times by number. Red(1), Yellow(2), Green(3), Blue(4), Purple(5)."
     while @@attempt.length < 5
     case gets.strip
       when "1"
@@ -177,13 +179,13 @@ class MasterMind
       when "5"
         @@attempt.push("PURPLE")
       else
-        puts "Please input a number"
+        puts "Please input a number between 1-5."
       end
     end
     puts "Your Guess: #{@@attempt}"
     puts verify(@@attempt, @@cChoices)
-    if @@attempt == @@cChoices 
-      winCondition
+    if winCondition == true 
+      return winCondition
     else
       @@round += 1
       @@attempt = []
@@ -194,10 +196,25 @@ class MasterMind
   def winCondition
     if @@attempt == @@cChoices
       puts "YOU WIN!"
-
+      return playAgain
     elsif @@round == 12
       puts "YOU LOSE!"
+      return playAgain
+    end
+  end
 
+  def playAgain
+    puts "Play again? (Y/N)"
+    loop do
+      case (gets.chomp.downcase)
+      when 'y'
+        reset
+        MasterMind.new
+      when 'n'
+        exit!
+      else
+        puts "Please input Y or N"
+      end
     end
   end
 end
